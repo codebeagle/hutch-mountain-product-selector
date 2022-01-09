@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product Selector</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+
+            <!-- START: Custom Tool -->
+            <section id="js-modal" class="product-selector">
+                <button id="js-close-modal" class="close-modal">
+                    <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5899 2.39005C16.1367 1.84329 16.1367 0.956825 15.5899 0.410068C15.0432 -0.136689 14.1567 -0.136689 13.6099 0.410068L8.00001 6.02001L2.39007 0.410068C1.84331 -0.136688 0.956842 -0.136689 0.410085 0.410068C-0.136672 0.956825 -0.136671 1.84329 0.410085 2.39005L6.02002 7.99999L0.410067 13.6099C-0.136689 14.1567 -0.136689 15.0432 0.410067 15.5899C0.956824 16.1367 1.84329 16.1367 2.39005 15.5899L8.00001 9.97997L13.61 15.5899C14.1567 16.1367 15.0432 16.1367 15.5899 15.5899C16.1367 15.0432 16.1367 14.1567 15.5899 13.6099L9.97999 7.99999L15.5899 2.39005Z" fill="#3D4246"/>
+                    </svg>                        
+                </button>
+                
+                <div id="js-modal-step-1" class="modal-step-1 ">
+                    <div class="modal-head">
+                        <h3>Select Your Thermostat</h3>
+                        <p>Click or tap a thermostat from this list below.</p>
+                        <p class="modal-step">Step 1 / 2</p>
+                    </div>
+                    <div class="slide-content-wrapper">
+                        <div class="item-list">
+                            <div class="logo-row">
+                                <img src="/images/logo-dometic.png" alt="Dometic logo">
+                            </div>
+                            <div class="items">
+                                <a class="item" data-item="dom-analog">
+                                    <img src="/images/dom_analog.jpg" alt="">
+                                    <p>Coming Soon</p>
+                                </a>
+                                <a href="" class="item" data-item="dom-dou-dz">
+                                    <img src="/images/dom_dou_sz.jpg" alt="">
+                                    <p>10 or 12 button model</p>
+                                </a>
+                                <a href="" class="item" data-item="dom-ct">
+                                    <img src="/images/dom-ct.jpg" alt="">
+                                    <p></p>
+                                </a>
+                                <a href="" class="item" data-item="dom-sz-lcd">
+                                    <img src="/images/dom_sz_lcd.jpg" alt="">
+                                    <p></p>
+                                </a>
+                                <a href="" class="item" data-item="dom-cc-dt">
+                                    <img src="/images/dom_cc_dt.jpg" alt="">
+                                    <p>5 button control</p>
+                                </a>
+                                <a href="" class="item" data-item="dom-cc-4btn">
+                                    <img src="/images/dom_cc_4btn.jpg" alt="">
+                                    <p>4 button control</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <div class="logo-row">
+                                <img src="/images/logo-coleman.png" alt="Coleman logo">
+                                <img src="/images/logo-atwood.png" alt="Atwood logo">
+                            </div>
+                            <div class="items">
+                                <a href="" class="item" data-item="cole-9000-zc">
+                                    <img src="/images/cole_9000-zc.jpg" alt="">
+                                    <p>Multi zone</p>
+                                </a>
+                                <a href="" class="item" data-item="cole-tslide-12vdc">
+                                    <img src="/images/cole_tslide_12vdc.jpg" alt="">
+                                    <p>12 VDC controlled units only</p>
+                                </a>
+                                <a href="" class="item" data-item="cole-mzzc8000-horz">
+                                    <img src="/images/cole_mzzc8000-horz.jpg" alt="">
+                                    <p>"ZC" model with slide button</p>
+                                </a>
+                                <a href="" class="item" data-item="cole-sshphcac-vert">
+                                    <img src="/images/cole_sshphcac-vert.jpg" alt="">
+                                    <p>Single zone</p>
+                                </a>
+                                <a href="" class="item" data-item="cole-2btn-12vdc">
+                                    <img src="/images/cole_2btn_12vdc.jpg" alt="">
+                                    <p>12 VDC controlled units only</p>
+                                </a>
+                                <a href="" class="item" data-item="atwood-tstat">
+                                    <img src="images/atwood_tstat.jpg" alt="">
+                                    <p>Coming soon</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="js-modal-step-2" class="modal-step-2 hidden">
+                    <div class="modal-head">
+                        <h3>Select Options</h3>
+                        <p class="modal-step"><button class="back-button js-back-button"><img src="/images/back-button-icon.svg" alt="back chevron"> Back</button> Step 2 / 2</p>
+                    </div>
+                    <div class="slide-content-wrapper">
+                        <div class="options">
+                            <div id="js-connection-options" class="option hidden">
+                                <p><strong>Select Connection Type</strong></p>
+                                <div id="js-connections" class="connections"></div>
+                            </div>
+                            <div id="js-colorways" class="option hidden">
+                                <p><strong>Select Your Color Preference</strong></p>
+                                <div id="js-colors" class="colors"></div>
+                            </div>
+                            <button id="js-results-btn" class="btn-modal">Get Model Recommendation</button>
+                        </div>
+                        <div class="product-details">
+                            <img id="js-model-image" src="" alt="">
+                            <h2 id="js-model-title"></h2>
+                            <p id="js-model-description"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="js-modal-step-results" class="result hidden">
+                    <div class="modal-head">
+                        <h3>Our Recommendation</h3>
+                        <p class="modal-step"><button class="back-button js-back-button"><img src="/images/back-button-icon.svg" alt="back chevron"> Reset</button></p>
+                    </div> 
+                    <div class="slide-content-wrapper">
+                        <div class="summary">
+                            <h2 id="js-result-model"></h2>
+                            <p id="js-result-part"></p>
+                            <p id="js-result-color"></p>
+                            <p id="js-result-price">$239.00</p>
+                            <button id="js-add-to-cart" class="btn-modal add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="product-image">
+                            <img id="js-result-image" src="/images/Screen_1024x1024@2x.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END: Custom Tool -->
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="product-selector-obj.js"></script>
+        <script src="product-selector.js"></script>
+    </body>
+</html>
