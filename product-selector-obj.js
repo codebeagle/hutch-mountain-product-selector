@@ -2,7 +2,12 @@ var productSelector = {
     products: {
         'dom-analog': {
             'available': false,
-            'message': 'Coming Soon!'
+            'modelImage': '',
+            'modelTitle': '',
+            'modelDescription': '',
+            'connections': [],
+            'colorways': [],
+            'resultModel': '',
         },
         'dom-dou-dz': {
             'available': true,
@@ -84,6 +89,15 @@ var productSelector = {
             ],
             'resultModel': 'EasyTouch RV 357',
         },
+        'dom-cc-4btn': {
+            'available': true,
+            'modelImage': '/images/dom_cc_4btn.jpg',
+            'modelTitle': 'Dometic CC 4BTN',
+            'modelDescription': 'The 4 button thermostat IS NOT compatible UNLESS you upgrade the circuit board inside the air conditioner.  There are two compatible upgraded circuit boards, Dometic 3109229.009 or Dometic 3311557.000.  Google either of these part numbers & you will find them for sale.<br><br>Because this is a custom retrofit, we are unable to provide tech support on how to upgrade the board in your air conditioner.  Reach out to Dometic or your local RV repair shop if you are uncomfortable making this upgrade.  Once the upgraded board is installed the EasyTouch 357 will work great! 😊',
+            'connections': [],
+            'colorways': [],
+            'resultModel': 'EasyTouch RV 357',
+        },
         'cole-9000-zc': {
             'available': true,
             'modelImage': '/images/cole_9000-zc.jpg',
@@ -98,6 +112,11 @@ var productSelector = {
                 {
                     'connection': 'wired',
                     'label': 'Wired',
+                    'model': 'EasyTouch RV 355C'
+                },
+                {
+                    'connection': 'not-sure',
+                    'label': 'Not Sure',
                     'model': 'EasyTouch RV 355C'
                 }
             ],
@@ -150,6 +169,11 @@ var productSelector = {
                     'connection': 'wired',
                     'label': 'Wired',
                     'model': 'EasyTouch RV 354C'
+                },
+                {
+                    'connection': 'not-sure',
+                    'label': 'Not Sure',
+                    'model': 'EasyTouch RV 354C'
                 }
             ],
             'colorways': [
@@ -164,6 +188,82 @@ var productSelector = {
                     'part': 'ASY-354-X02'
                 }
             ],
+            'resultModel': '',
+        },
+        'cole-sshphcac-vert': {
+            'available': true,
+            'modelImage': 'cole_sshphcac-vert.jpg',
+            'modelTitle': 'Coleman Single Zone',
+            'modelDescription': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie quis faucibus magna sagittis neque. Enim, suscipit nunc, interdum at bibendum duis et duis nibh.',
+            'connections': [
+                {
+                    'connection': 'clip',
+                    'label': 'Clip',
+                    'model': 'EasyTouch RV 352C'
+                },
+                {
+                    'connection': 'push',
+                    'label': 'Gray Push',
+                    'model': 'EasyTouch RV 352'
+                },
+                {
+                    'connection': 'not-sure',
+                    'label': 'Not Sure',
+                    'model': 'EasyTouch RV 352C'
+                }
+            ],
+            'colorways': [
+                {
+                    'color': 'black',
+                    'label': 'Black',
+                    'part': 'ASY-352-X01'
+                },
+                {
+                    'color': 'white',
+                    'label': 'White',
+                    'part': 'ASY-352-X02'
+                }
+            ],
+            'resultModel': '',
+        },
+        'cole-2btn-hp': {
+            'available': true,
+            'modelImage': '/images/cole-2btn-hp.jpg',
+            'modelTitle': 'RVComfort HP, HC, AC Models',
+            'modelDescription': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie quis faucibus magna sagittis neque. Enim, suscipit nunc, interdum at bibendum duis et duis nibh.',
+            'connections': [
+                {
+                    'connection': 'clip',
+                    'label': 'Clip',
+                    'model': 'EasyTouch RV 352'
+                },
+                {
+                    'connection': 'wired',
+                    'label': 'Wired',
+                    'model': 'EasyTouch RV 352C'
+                }
+            ],
+            'colorways': [
+                {
+                    'color': 'black',
+                    'label': 'Black',
+                    'part': 'ASY-352-X03'
+                },
+                {
+                    'color': 'white',
+                    'label': 'White',
+                    'part': 'ASY-352-X04'
+                }
+            ],
+            'resultModel': '',
+        },
+        'cole-2btn-php': {
+            'available': false,
+            'modelImage': '',
+            'modelTitle': '',
+            'modelDescription': '',
+            'connections': [],
+            'colorways': [],
             'resultModel': '',
         },
     }

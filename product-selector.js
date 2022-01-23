@@ -36,74 +36,83 @@ $(window).ready(function() {
         // Check if model exists in data object
         if (productSelector.products[model]) {
 
-            // Set step 2 model info
-            stepTwo.find('#js-model-image').attr('src',productSelector.products[model].modelImage);
-            stepTwo.find('#js-model-title').html(productSelector.products[model].modelTitle);
-            stepTwo.find('#js-model-description').html(productSelector.products[model].modelDescription);
+            // Check if model is available
+            if(productSelector.products[model].available === true) {
+                // Set step 2 model info
+                stepTwo.find('#js-model-image').attr('src',productSelector.products[model].modelImage);
+                stepTwo.find('#js-model-title').html(productSelector.products[model].modelTitle);
+                stepTwo.find('#js-model-description').html(productSelector.products[model].modelDescription);
 
-            // Set step 2 colorway info
-            var theConnections = productSelector.products[model].connections;
-            if (theConnections.length > 0) {
-                console.log('there are connections!')
-                stepTwo.find('#js-connection-options').removeClass('hidden');
-                
-                for (var i = 0; i < theConnections.length; i++) {
-                    var theConnection = '\
-                        <div class="connection js-connection" data-connection="' + theConnections[i].connection +'" data-model="' + theConnections[i].model +'" data-label="' + theConnections[i].label +'">\
-                            <div class="swatch ' + theConnections[i].connection + '">\
-                                <div class="checkmark">\
-                                    <img src="/images/checkmark.svg" alt="checkmark">\
-                                </div>';
-                    switch (theConnections[i].connection) {
-                        case 'clip':
-                            theConnection += '<img src="/images/etrv_ma_harness.jpg" width="166" height="85" alt="clip connection">';
-                            break;
+                // Set step 2 colorway info
+                var theConnections = productSelector.products[model].connections;
+                if (theConnections.length > 0) {
+                    console.log('there are connections!')
+                    stepTwo.find('#js-connection-options').removeClass('hidden');
+                    
+                    for (var i = 0; i < theConnections.length; i++) {
+                        var theConnection = '\
+                            <div class="connection js-connection" data-connection="' + theConnections[i].connection +'" data-model="' + theConnections[i].model +'" data-label="' + theConnections[i].label +'">\
+                                <div class="swatch ' + theConnections[i].connection + '">\
+                                    <div class="checkmark">\
+                                        <img src="/images/checkmark.svg" alt="checkmark">\
+                                    </div>';
+                        switch (theConnections[i].connection) {
+                            case 'clip':
+                                theConnection += '<img src="/images/etrv_ma_harness.jpg" width="166" height="85" alt="clip connection">';
+                                break;
 
-                        case 'wired':
-                            theConnection += '<img src="/images/connectors-wire-nuts.jpg" width="166" height="85" alt="wired connection"></img>';
-                            break;
-                        
-                        default:
-                            theConnection += '';
-                    }
-                    theConnection += '\
-                             </div>\
-                            <p>' + theConnections[i].label + '</p>\
-                        </div>';
-                    stepTwo.find('#js-connections').append(theConnection);
-                }
-            }
+                            case 'wired':
+                                theConnection += '<img src="/images/connectors-wire-nuts.jpg" width="166" height="85" alt="wired connection"></img>';
+                                break;
+                            
+                            case 'push':
+                                theConnection += '<img src="/images/cole-push-connector.jpg" width="166" height="85" alt="gray push connection"></img>';
+                                break;
 
-
-            // Set step 2 colorway info
-            var theColorways = productSelector.products[model].colorways;
-            if (theColorways.length > 0) {
-                console.log('there are colors!')
-                stepTwo.find('#js-colorways').removeClass('hidden');
-                
-                for (var i = 0; i < theColorways.length; i++) {
-                    var theColor = '\
-                        <div class="color js-color"  data-part="' + theColorways[i].part +'" data-label="' + theColorways[i].label +'">\
-                            <div class="swatch ' + theColorways[i].color + '">\
-                                <div class="checkmark">\
-                                    <img src="/images/checkmark.svg" alt="checkmark">\
+                            case 'not-sure':
+                                theConnection += '<img src="/images/connectors-not-sure.png" width="166" height="85" alt="not sure of connection"></img>';
+                                break;
+                            
+                            default:
+                                theConnection += '';
+                        }
+                        theConnection += '\
                                 </div>\
-                            </div>\
-                            <p>' + theColorways[i].label + '</p>\
-                        </div>';
-                    stepTwo.find('#js-colors').append(theColor);
+                                <p>' + theConnections[i].label + '</p>\
+                            </div>';
+                        stepTwo.find('#js-connections').append(theConnection);
+                    }
                 }
+
+
+                // Set step 2 colorway info
+                var theColorways = productSelector.products[model].colorways;
+                if (theColorways.length > 0) {
+                    console.log('there are colors!')
+                    stepTwo.find('#js-colorways').removeClass('hidden');
+                    
+                    for (var i = 0; i < theColorways.length; i++) {
+                        var theColor = '\
+                            <div class="color js-color"  data-part="' + theColorways[i].part +'" data-label="' + theColorways[i].label +'">\
+                                <div class="swatch ' + theColorways[i].color + '">\
+                                    <div class="checkmark">\
+                                        <img src="/images/checkmark.svg" alt="checkmark">\
+                                    </div>\
+                                </div>\
+                                <p>' + theColorways[i].label + '</p>\
+                            </div>';
+                        stepTwo.find('#js-colors').append(theColor);
+                    }
+                }
+
+                // Set results model
+                theResult[0] = productSelector.products[model].resultModel;
+
+                // Close step 1 and open step 2
+                stepOne.addClass('hidden');
+                stepTwo.removeClass('hidden');
             }
 
-            // Set results model
-            theResult[0] = productSelector.products[model].resultModel;
-
-            // Close step 1 and open step 2
-            stepOne.addClass('hidden');
-            stepTwo.removeClass('hidden');
-
-        } else {
-            console.log('no item data');
         }
     }
 

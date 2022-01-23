@@ -16,6 +16,7 @@ $white: #FFFFFF;
 /* Product Selector */
 .product-selector {
     width: 100%;
+    max-width: 1110px;
     padding: 60px;
     background-color: #fff;
     margin: 30px;
@@ -155,9 +156,33 @@ $white: #FFFFFF;
             border: solid 1px $light-gray;
             padding: 10px 30px ;
             height: 200px;
+            position: relative;
+
+            &.coming-soon {
+                cursor: default;
+
+                img {
+                    filter: grayscale(100%);
+                    opacity: 0.5;
+                }
+
+                &:after {
+                    content: 'Coming Soon';
+                    position: absolute;
+                    bottom: 10px;
+                    font-family: $lato;
+                    font-weight: 700;
+                    font-size: 14px;
+                    color: $orange;
+                }
+            }
 
             &:hover {
                 border: solid 1px $orange;
+            }
+
+            &.coming-soon:hover {
+                border: solid 1px $light-gray;
             }
 
             img {
@@ -171,10 +196,6 @@ $white: #FFFFFF;
                 margin-bottom: 0;
             }
         }
-    }
-
-    .options {
-        max-width: 40%;
     }
 
     .connections,
@@ -219,12 +240,10 @@ $white: #FFFFFF;
             }
         }
 
-        .clip {
-            background-color: $white;
-            border: solid 2px $dark-gray;
-        }
-
-        .wired {
+        .clip,
+        .wired,
+        .push,
+        .not-sure {
             background-color: $white;
             border: solid 2px $dark-gray;
         }
@@ -289,6 +308,11 @@ $white: #FFFFFF;
 
     .product-details {
         max-width: 50%;
+        margin-left: 30px;
+
+        img {
+            max-width: 100%;
+        }
     }
 
     .summary {
