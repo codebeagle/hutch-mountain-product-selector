@@ -6,6 +6,7 @@ $(window).ready(function() {
         '', // isWired Suffix
         '' // Color
     ]
+    var triggerBtn = $('.js-product-selector');
     var theModal = $('#js-modal');
     var closeModalBtn = $('#js-close-modal');
     var items = $('.item');
@@ -14,14 +15,20 @@ $(window).ready(function() {
     var stepTwo = $('#js-modal-step-2');
     var stepResults = $('#js-modal-step-results');
     var resultsBtn = $('#js-results-btn');
+    var errorNotice = $('#js-error-notice');
     var isWired = false;
     var backBtn = $('.js-back-button');
-
-
+    var validConnection = [false,false];
+    var validColor = [false,false];
 
     //--- FUNCTIONS
+    function openModal() {
+        theModal.fadeIn(250);
+    }
+
     function closeModal() {
-        theModal.addClass('hidden');
+        theModal.fadeOut(250);
+        setTimeout(reset,250);
     }
 
     function selectItem(e) {
@@ -43,10 +50,13 @@ $(window).ready(function() {
                 stepTwo.find('#js-model-title').html(productSelector.products[model].modelTitle);
                 stepTwo.find('#js-model-description').html(productSelector.products[model].modelDescription);
 
-                // Set step 2 colorway info
+                // Set step 2 connection info
                 var theConnections = productSelector.products[model].connections;
                 if (theConnections.length > 0) {
-                    console.log('there are connections!')
+                    
+                    // Tell validation to check for connection
+                    validConnection[0] = true;
+
                     stepTwo.find('#js-connection-options').removeClass('hidden');
                     
                     for (var i = 0; i < theConnections.length; i++) {
@@ -84,11 +94,13 @@ $(window).ready(function() {
                     }
                 }
 
-
                 // Set step 2 colorway info
                 var theColorways = productSelector.products[model].colorways;
                 if (theColorways.length > 0) {
-                    console.log('there are colors!')
+                    
+                    // Tell validation to check for color
+                    validColor[0] = true;
+                    
                     stepTwo.find('#js-colorways').removeClass('hidden');
                     
                     for (var i = 0; i < theColorways.length; i++) {
@@ -105,6 +117,12 @@ $(window).ready(function() {
                     }
                 }
 
+                // Hide left column if there are no connections or colorways
+                if ( theConnections.length === 0 && theColorways.length === 0 ) {
+                    $('.options').addClass('hidden');
+                    $('.product-details').addClass('full-width');
+                }
+
                 // Set results model
                 theResult[0] = productSelector.products[model].resultModel;
 
@@ -117,7 +135,11 @@ $(window).ready(function() {
     }
 
     function setConnection() {
-        console.log('connection clicked');
+
+        // Validate connection
+        validConnection[1] = true;
+        $('.error-connection').remove();
+
         $('.connections .swatch').removeClass('selected');
         $(this).find('.swatch').addClass('selected');
 
@@ -135,7 +157,11 @@ $(window).ready(function() {
     }
 
     function setColor() {
-        console.log('color clicked');
+        
+        // Validate color
+        validColor[1] = true;
+        $('.error-color').remove();
+
         $('.colors .swatch').removeClass('selected');
         $(this).find('.swatch').addClass('selected');
         theResult[1] = $(this).data('part');
@@ -143,13 +169,63 @@ $(window).ready(function() {
         console.log(theResult);
     }
 
+    function checkValidation() {
+        var validationPassed = [false, false];
+        
+        if (validConnection[0] === true) {
+            validationPassed[0] = validConnection[1];
+        } else {
+            validationPassed[0] = null;
+        }
+
+        if (validColor[0] === true) {
+            validationPassed[1] = validColor[1];
+        } else {
+            validationPassed[1] = null;
+        }
+
+        console.log(validationPassed);
+
+        // Approve or return error message
+        if (validationPassed[0] != false && validationPassed[1] != false) {
+            slideResults();
+        } else {
+            
+            // Connection missing
+            if (validationPassed[0] === false) {
+                errorNotice.append('<li class="error-message error-connection">No connection was selected. Please select a connection option.</li>');
+            }
+
+            // Color missing
+            if (validationPassed[1] === false) {
+                errorNotice.append('<li class="error-message error-color">No color was selected. Please select a color preference.</li>');
+            }
+        }
+    }
+
     function slideResults() {
+
+        // Check validation by stating if something should be checked and the the boolean if it was
+        
+
         // Set results slide info
         stepResults.find('#js-result-model').html(theResult[0]);
         stepResults.find('#js-result-part').html('Part Number: ' + theResult[1] + theResult[2]);
         stepResults.find('#js-result-color').html('Color: ' + theResult[3]);
+        
+        
+        // Show the result image based on the desired/appropriate color option
+        switch (theResult[3]) {
+            case 'Black':
+                stepResults.find('#js-result-image').attr('src','images/micro-air-black.png');
+                break;
 
-        //Close step 2 and open results
+            case 'White':
+                stepResults.find('#js-result-image').attr('src','images/micro-air-white.png');
+                break;
+        }
+
+        // Close step 2 and open results
         stepTwo.addClass('hidden');
         stepResults.removeClass('hidden');
     }
@@ -168,15 +244,22 @@ $(window).ready(function() {
         stepTwo.find('#js-connections').html('');
         stepTwo.find('#js-colorways').addClass('hidden');
         stepTwo.find('#js-colors').html('');
+        $('.options').removeClass('hidden');
+        $('.product-details').removeClass('full-width');
+
+        // Reset validation
+        validConnection = [false,false];
+        validColor = [false,false];
+        errorNotice.html('');
     }
 
 
     //--- INIT
+    triggerBtn.on('click', openModal);
     closeModalBtn.on('click', closeModal);
     items.on('click', selectItem);
-    resultsBtn.on('click', slideResults);
+    resultsBtn.on('click', checkValidation);
     backBtn.on('click', reset);
     $(document).on('click', '.js-color', setColor);
     $(document).on('click', '.js-connection', setConnection);
-
 });

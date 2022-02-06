@@ -1,13 +1,7 @@
 var productSelector = {
     products: {
         'dom-analog': {
-            'available': false,
-            'modelImage': '',
-            'modelTitle': '',
-            'modelDescription': '',
-            'connections': [],
-            'colorways': [],
-            'resultModel': '',
+            'available': false
         },
         'dom-dou-dz': {
             'available': true,

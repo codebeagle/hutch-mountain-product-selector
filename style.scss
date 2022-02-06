@@ -1,9 +1,16 @@
 /* Temporary */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(222, 226, 182);
+}
+
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #333;
+    position: relative;
+    width: 100%;
 }
 
 $lato: 'Lato', sans-serif;
@@ -14,18 +21,35 @@ $orange: #FFA800;
 $white: #FFFFFF;
 
 /* Product Selector */
-.product-selector {
+.modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1110px;
-    padding: 60px;
-    background-color: #fff;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.product-selector {
+    display: none;
+    width: 100%;
+    max-width: 1080px;
     margin: 30px;
+    padding: 15px;
+    background-color: #fff;
     position: relative;
+    box-shadow: 0 8px 12px rgba($black, 0.15);
 
     h2, h3, p {
         font-family: $lato;
         color: $dark-gray;
         margin-bottom: 5px;
+    }
+
+    li {
+        font-family: $lato;
     }
     
     h2 {
@@ -40,7 +64,7 @@ $white: #FFFFFF;
         line-height: 28px;
     }
 
-    p {
+    p, li {
         font-weight: 400;
         font-size: 16px;
         line-height: 22px;
@@ -65,9 +89,20 @@ $white: #FFFFFF;
         padding: 17px 45px 15px;
         border-radius: 40px;
         cursor: pointer;
+        display: block;
+        margin: 0 auto;
 
         &:hover {
             background-color: #FF8A00;
+        }
+    }
+
+    .error-notice {
+        list-style: none;
+        padding: 0 0 0 15px;
+
+        li {
+            color: red;
         }
     }
 
@@ -104,9 +139,8 @@ $white: #FFFFFF;
 
     .modal-head {
         display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        // justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
         width: 100%;
 
         h3 {
@@ -123,6 +157,7 @@ $white: #FFFFFF;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        flex-direction: column;
     }
 
     .list-items {
@@ -138,14 +173,17 @@ $white: #FFFFFF;
     }
 
     .item-list {
+        width: 100%;
+
         &:first-child {
-            margin-right: 30px;
+            margin-bottom: 30px;
+            margin-right: 0;
         }
     }
 
     .items {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         border: solid 1px $dark-gray;
 
         .item {
@@ -198,16 +236,25 @@ $white: #FFFFFF;
         }
     }
 
-    .connections,
+    .connections {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
     .colors {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
+        justify-content: center;
         margin-bottom: 30px;
     }
 
     .connection {
         margin-right: 10px;
+
+        
 
         .swatch {
             z-index: 0;
@@ -306,9 +353,19 @@ $white: #FFFFFF;
         }
     }
 
+    .options {
+        width: 100%;
+    }
+
+    .option {
+        
+        .option-label {
+            text-align: center;
+        }
+    }
+
     .product-details {
-        max-width: 50%;
-        margin-left: 30px;
+        max-width: 100%;
 
         img {
             max-width: 100%;
@@ -316,11 +373,21 @@ $white: #FFFFFF;
     }
 
     .summary {
-        max-width: 50%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .product-image-wrapper {
+        text-align: center;
     }
 
     .product-image {
-        max-width: 40%;
+        width: 100%;
+        text-align: center;
+
+        img {
+            max-width: 100%;
+        }
     }
 
     // Modal Step Specific Styles
@@ -334,15 +401,21 @@ $white: #FFFFFF;
     .modal-step-2 {
 
         .slide-content-wrapper {
-            margin-top: 75px;
+            margin-top: 25px;
+            flex-direction: column-reverse; // use this to make the model come first on slide 2
+        }
+
+        .product-details {
+            margin-bottom: 20px;
         }
     }
 
     .result {
 
         .slide-content-wrapper {
-            margin: 50px;
+            margin: 15px;
             align-items: center;
+            flex-direction: column-reverse;
         }
     }
 }
@@ -350,4 +423,109 @@ $white: #FFFFFF;
 // Utilities
 .hidden {
     display: none; 
+}
+
+
+// MEDIA QUERIES
+//--------------------------------------------------
+@media screen and (min-width: 560px) {
+    .product-selector {
+        padding: 30px;
+        margin: 30px;
+        
+        .items {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .product-selector {
+        padding: 45px;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .product-selector {
+        
+        .modal-head {
+            flex-direction: row;
+            align-items: flex-end;
+        }
+
+        .slide-content-wrapper {
+            flex-direction: row;
+        }
+
+        .item-list {
+            &:first-child {
+                margin-bottom: 0;
+                margin-right: 30px;
+            }
+        }
+
+        .btn-modal {
+            margin: 0;
+        } 
+
+        .connections {
+            flex-direction: row;
+        }
+
+        .colors {
+            justify-content: flex-start;
+        }
+
+        .option {
+        
+            .option-label {
+                text-align: left;
+            }
+        }
+
+        .product-details {
+            max-width: 50%;
+            margin-left: 30px;
+    
+            img {
+                max-width: 100%;
+            }
+    
+            &.full-width {
+                max-width: 100%;
+            }
+        }
+
+        .summary {
+            width: 50%;
+            text-align: left;
+        }
+
+        .product-image {
+            width: 50%;
+        }
+
+        .modal-step-2 {
+
+            .slide-content-wrapper {
+                margin-top: 60px;
+                flex-direction: row;
+            }
+        }
+
+        .result {
+
+            .slide-content-wrapper {
+                margin: 50px;
+                align-items: center;
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .product-selector {
+        padding: 60px;
+    }
 }
