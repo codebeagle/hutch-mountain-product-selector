@@ -1,19 +1,8 @@
-/* Temporary */
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: #dee2b6;
-}
-
-.wrapper {
-  position: relative;
-  width: 100%;
-}
-
 /* Product Selector */
+.js-product-selector {
+  cursor: pointer;
+}
+
 .modal-wrapper {
   position: absolute;
   top: 0;
@@ -44,6 +33,7 @@ body {
   font-family: "Lato", sans-serif;
   color: #3D4246;
   margin-bottom: 5px;
+  letter-spacing: normal;
 }
 .product-selector li {
   font-family: "Lato", sans-serif;
@@ -85,6 +75,9 @@ body {
 }
 .product-selector .btn-modal:hover {
   background-color: #FF8A00;
+}
+.product-selector .btn-modal.add-to-cart {
+  margin-top: 20px;
 }
 .product-selector .error-notice {
   list-style: none;
@@ -264,6 +257,11 @@ body {
   z-index: 0;
   position: relative;
   cursor: pointer;
+  max-height: 85px;
+}
+.product-selector .connection .swatch img {
+  max-width: 100%;
+  height: auto;
 }
 .product-selector .connection .swatch .checkmark {
   opacity: 0;
@@ -295,6 +293,7 @@ body {
 .product-selector .connection .clip,
 .product-selector .connection .wired,
 .product-selector .connection .push,
+.product-selector .connection .harness,
 .product-selector .connection .not-sure {
   background-color: #FFFFFF;
   border: solid 2px #3D4246;
